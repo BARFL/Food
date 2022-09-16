@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     //Timer
-    let deadline = '2022-09-16';
+    let deadline = '2022-09-20';
 
     function setClock(selector, endtimer){
         const timer = document.querySelector(selector),
