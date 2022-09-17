@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script defer src="js/script.js"></script>
+    <script defer src="js/main.js"></script>
     <header class="header">
         <div class="header__left-block">
             <div class="header__logo">
@@ -106,7 +106,7 @@
                     <div class="offer__slider-prev">
                         <img src="icons/left.svg" alt="prev">
                     </div>
-                    <span id="current">03</span>
+                    <span id="current">01</span>
                     /
                     <span id="total">04</span>
                     <div class="offer__slider-next">
@@ -114,18 +114,20 @@
                     </div>
                 </div>
                 <div class="offer__slider-wrapper">
-                    <div class="offer__slide">
-                        <img src="img/slider/pepper.jpg" alt="pepper">
+                    <div class="offer__slider-inner">
+                        <div class="offer__slide">
+                            <img src="img/slider/pepper.jpg" alt="pepper">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/food-12.jpg" alt="food">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/olive-oil.jpg" alt="oil">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/paprika.jpg" alt="paprika">
+                        </div>
                     </div>
-                    <!-- <div class="offer__slide">
-                        <img src="img/slider/food-12.jpg" alt="food">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/olive-oil.jpg" alt="oil">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/paprika.jpg" alt="paprika">
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -183,7 +185,6 @@
 
     <div class="menu">
         <h2 class="title">Наше меню на день</h2>
-
         <div class="menu__field">
             <div class="container">
                 <div class="menu__item">
@@ -223,9 +224,9 @@
     <div class="order">
         <div class="container">
             <div class="title">Заказывай пробный день прямо сейчас!</div>
-            <form action="#" class="order__form">
+            <form method="post" name="form" action="" class="order__form">
                 <input required placeholder="Ваше имя" name="name" type="text" class="order__input">
-                <input required placeholder="Ваш номер телефона" name="phone" type="phone" class="order__input">
+                <input required placeholder="Ваш номер телефона" name="phone" type="tel" class="order__input">
                 <img src="icons/right.svg" alt="right">
                 <button class="btn btn_dark btn_min">Перезвонить мне</button>
             </form>
@@ -243,7 +244,7 @@
                     Мы ценим каждого клиента и предлагаем вам стать одним из них на очень выгодных условиях. 
                     Каждому, кто закажет доставку питание на неделю, будет предоставлена скидка в размере <span>20%!</span>
                     <br><br>
-                    Акция закончится 20 мая в 00:00
+                    Акция закончится 20 сентября в 00:00
                 </div>
             </div>
             <div class="promotion__timer">
@@ -291,11 +292,11 @@
     <div class="modal hide">
         <div class="modal__dialog">
             <div class="modal__content">
-                <form action="#">
+                <form action="" method="post" name="form">
                     <div class="modal__close" data-modalClose>&times;</div>
                     <div class="modal__title">Мы свяжемся с вами как можно быстрее!</div>
                     <input required placeholder="Ваше имя" name="name" type="text" class="modal__input">
-                    <input required placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input">
+                    <input required placeholder="Ваш номер телефона" name="phone" type="tel" class="modal__input">
                     <button class="btn btn_dark btn_min">Перезвонить мне</button>
                 </form>
             </div>
