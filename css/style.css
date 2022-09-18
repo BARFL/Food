@@ -171,6 +171,7 @@ a {
 
 .sidepanel__text span {
     writing-mode: vertical-lr;
+    transform: rotate(180deg);
 }
 
 .sidepanel__divider {

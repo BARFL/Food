@@ -325,7 +325,7 @@ window.addEventListener('DOMContentLoaded', function () {
         currentSlide = document.querySelector('#current'),
         totalSlides = document.querySelector('#total'),
         slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-        width = window.getComputedStyle(slidesWrapper).width.slice(0, -2),
+        width = +window.getComputedStyle(slidesWrapper).width.replace(/\D/g, ''),
         endWidth = width * (slides.length - 1),
         slidesField = document.querySelector('.offer__slider-inner'),
         checkIndex = function () {
@@ -345,7 +345,7 @@ window.addEventListener('DOMContentLoaded', function () {
   totalSlides.textContent = checkIndex(slides.length);
   currentSlide.textContent = checkIndex(slideIndex);
   slides.forEach(slide => {
-    slide.style.width = width;
+    slide.style.width = `${width}`;
   });
   slider.style.position = 'relative';
   const indicators = document.createElement('ol'),
@@ -371,7 +371,7 @@ window.addEventListener('DOMContentLoaded', function () {
       offset = 0;
       slideIndex = 1;
     } else {
-      offset += +width;
+      offset += width;
       slideIndex++;
     }
 
@@ -384,7 +384,7 @@ window.addEventListener('DOMContentLoaded', function () {
       offset = endWidth;
       slideIndex = slides.length;
     } else {
-      offset -= +width;
+      offset -= width;
       slideIndex--;
     }
 
@@ -418,6 +418,87 @@ window.addEventListener('DOMContentLoaded', function () {
   // prevSlide.addEventListener('click', () => {
   //     showCurrentSlide(+currentSlide.textContent - 2 < 0  ? slides.length - 1 : +currentSlide.textContent - 2)
   // })
+  //calculator
+
+  let sex = 'female',
+      height,
+      weight,
+      age,
+      ratio = 1.375;
+  const result = document.querySelector('.calculating__result');
+
+  function calcCalorie(sex, height, weight, age, ratio) {
+    result.textContent = '';
+    const span = document.createElement('span');
+    span.style.fontSize = '42px';
+    span.textContent = 'Введите все данные';
+
+    if (sex && height && weight && age && ratio) {
+      if (sex === 'female') {
+        span.textContent = `${Math.round((447.6 + 9.2 * weight + 3.1 * height - 4.3 * age) * ratio)}`;
+      }
+
+      if (sex === 'male') {
+        span.textContent = `${Math.round((88.36 + 13.4 * weight + 4.8 * height - 5.7 * age) * ratio)}`;
+      }
+
+      result.append(span);
+      result.insertAdjacentText('beforeend', 'ккал');
+    } else {
+      span.style.fontSize = '22px';
+      result.append(span);
+    }
+  }
+
+  function getStaticInfo(parentElement, buttonClass, classActive) {
+    parentElement.addEventListener('click', event => {
+      const target = event.target;
+
+      if (target.classList.contains(buttonClass) && target.tagName !== 'INPUT') {
+        if (target.getAttribute('data-ratio')) {
+          ratio = target.getAttribute('data-ratio');
+          parentElement.querySelectorAll('[data-ratio]').forEach(element => {
+            element.classList.remove(classActive);
+          });
+        } else {
+          sex = target.getAttribute('id');
+          parentElement.querySelectorAll('[data-sexToggle]').forEach(element => {
+            element.classList.remove(classActive);
+          });
+        }
+
+        target.classList.add(classActive);
+        calcCalorie(sex, height, weight, age, ratio);
+      }
+    });
+  }
+
+  function getDynamicInfo(id) {
+    const input = document.querySelector(id);
+    input.addEventListener('input', () => {
+      switch (input.getAttribute('id')) {
+        case "height":
+          height = +input.value;
+          break;
+
+        case "weight":
+          weight = +input.value;
+          break;
+
+        case "age":
+          age = +input.value;
+          break;
+      }
+
+      calcCalorie(sex, height, weight, age, ratio);
+    });
+  }
+
+  getStaticInfo(document.querySelector('.calculating__field'), 'calculating__choose-item', 'calculating__choose-item_active');
+  calcCalorie();
+  getDynamicInfo('#height');
+  getDynamicInfo('#weight');
+  getDynamicInfo('#age');
 });
 
 /***/ })
