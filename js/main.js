@@ -346,7 +346,6 @@ window.addEventListener('DOMContentLoaded', function () {
     totalSlides.textContent = checkIndex(slides.length);
     currentSlide.textContent = checkIndex(slideIndex);
     slides.forEach(slide => {
-      console.log(width);
       slide.style.width = `${width}`;
     });
     slider.style.position = 'relative';
